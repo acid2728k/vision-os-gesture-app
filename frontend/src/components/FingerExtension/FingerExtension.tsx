@@ -1,8 +1,8 @@
-import { FingerExtension } from '../../types';
+import { FingerExtension as FingerExtensionType } from '../../types';
 import styles from './FingerExtension.module.css';
 
 interface FingerExtensionProps {
-  extension: FingerExtension;
+  extension: FingerExtensionType;
 }
 
 const FINGER_LABELS = ['THM', 'IDX', 'MID', 'RNG', 'PNK'] as const;
