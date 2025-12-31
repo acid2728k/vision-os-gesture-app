@@ -1,0 +1,49 @@
+.neuralHeatmap {
+  background: #0a0a0a;
+  border: 2px solid #003300;
+  border-radius: 4px;
+  padding: 12px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  color: #00ff00;
+}
+
+.header {
+  font-size: 11px;
+  color: #00cc66;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 10px;
+  color: #00cc66;
+  text-transform: uppercase;
+}
+
+.activeLabel {
+  font-size: 9px;
+  color: #00ff00;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 4px;
+  width: 120px;
+  height: 120px;
+}
+
+.cell {
+  border: 1px solid #003300;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
