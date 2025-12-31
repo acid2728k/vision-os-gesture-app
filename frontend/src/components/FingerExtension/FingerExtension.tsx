@@ -38,4 +38,3 @@ export const FingerExtension = ({ extension }: FingerExtensionProps) => {
     </div>
   );
 };
-
