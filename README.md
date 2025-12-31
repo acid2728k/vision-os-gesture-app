@@ -123,17 +123,17 @@ vision-os-gesture-app/
 
 ### Как помочь проекту:
 
-- 🐛 [Сообщить о баге](https://github.com/yourusername/vision-os-gesture-app/issues/new?template=bug_report.md)
-- 💡 [Предложить новую функцию](https://github.com/yourusername/vision-os-gesture-app/issues/new?template=feature_request.md)
-- 📝 [Улучшить документацию](https://github.com/yourusername/vision-os-gesture-app/pulls)
-- 🔧 [Исправить баг или добавить функцию](https://github.com/yourusername/vision-os-gesture-app/pulls)
+- 🐛 [Сообщить о баге](https://github.com/acid2728k/vision-os-gesture-app/issues/new?template=bug_report.md)
+- 💡 [Предложить новую функцию](https://github.com/acid2728k/vision-os-gesture-app/issues/new?template=feature_request.md)
+- 📝 [Улучшить документацию](https://github.com/acid2728k/vision-os-gesture-app/pulls)
+- 🔧 [Исправить баг или добавить функцию](https://github.com/acid2728k/vision-os-gesture-app/pulls)
 
 ## 📊 Статистика проекта
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/vision-os-gesture-app?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/vision-os-gesture-app?style=social)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/vision-os-gesture-app)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/vision-os-gesture-app)
+![GitHub stars](https://img.shields.io/github/stars/acid2728k/vision-os-gesture-app?style=social)
+![GitHub forks](https://img.shields.io/github/forks/acid2728k/vision-os-gesture-app?style=social)
+![GitHub issues](https://img.shields.io/github/issues/acid2728k/vision-os-gesture-app)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/acid2728k/vision-os-gesture-app)
 
 ## 🗺 Roadmap
 
