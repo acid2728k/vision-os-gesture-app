@@ -1,0 +1,56 @@
+.pinchAnalysis {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px;
+  font-family: "JetBrains Mono", "Consolas", monospace;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  height: var(--square-size);
+  min-height: var(--square-size);
+  max-height: var(--square-size);
+}
+
+.header {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent-purple);
+  text-shadow: 0 0 8px var(--accent-purple);
+}
+
+.graph {
+  width: 100%;
+  flex: 1;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  min-height: 80px;
+}

@@ -1,0 +1,175 @@
+.app {
+  height: 100vh;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Область Х = (100vh - statusbar - padding main - gaps между квадратами) / 3 */
+  /* Увеличено вычитаемое значение, чтобы все влезало при 100% масштабе */
+  --square-size: calc((100vh - 120px) / 3);
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  padding: 12px;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  align-items: start;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  overflow: hidden;
+  max-height: calc(
+    3 * var(--square-size) + 16px
+  ); /* Высота правого столбца: 3 квадрата + 2 gap */
+}
+
+.bottomLeft {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  min-height: 0;
+  flex: 0 0 var(--square-size);
+  max-height: var(--square-size);
+  align-items: start;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  overflow: hidden;
+  align-items: stretch;
+}
+
+.rightColumn > * {
+  width: 100%;
+  flex: 0 0 var(--square-size);
+  min-height: var(--square-size);
+  max-height: var(--square-size);
+}
+
+.errorContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "JetBrains Mono", monospace;
+}
+
+.loadingContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.95);
+  color: var(--accent-purple);
+  font-family: "JetBrains Mono", monospace;
+  z-index: 1000;
+}
+
+.error,
+.loading {
+  text-align: center;
+  padding: 32px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.error h2 {
+  margin-bottom: 16px;
+  color: #ef4444;
+}
+
+.error p {
+  margin: 8px 0;
+  color: var(--text-secondary);
+}
+
+.retryButton {
+  margin-top: 24px;
+  padding: 12px 24px;
+  background: var(--bg-card);
+  border: 2px solid var(--accent-purple);
+  border-radius: 6px;
+  color: var(--accent-purple);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.retryButton:hover {
+  background: var(--accent-purple);
+  color: #000000;
+  box-shadow: 0 0 20px var(--accent-purple);
+  transform: translateY(-2px);
+}
+
+.retryButton:active {
+  transform: translateY(0);
+}
+
+.loadingText {
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: var(--accent-purple);
+  text-shadow: 0 0 10px var(--accent-purple);
+}
+
+.loadingBar {
+  width: 300px;
+  height: 4px;
+  background: var(--bg-tertiary);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loadingBarFill {
+  height: 100%;
+  background: var(--accent-purple);
+  box-shadow: 0 0 10px var(--accent-purple);
+  animation: loading 2s infinite;
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 70%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  .topRight,
+  .bottomRight {
+    grid-template-columns: 1fr;
+  }
+}
