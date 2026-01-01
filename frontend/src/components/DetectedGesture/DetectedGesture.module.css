@@ -1,10 +1,10 @@
 .detectedGesture {
   background: #0a0a0a;
-  border: 2px solid #003300;
+  border: 2px solid #330033;
   border-radius: 4px;
   padding: 12px;
   font-family: 'JetBrains Mono', 'Consolas', monospace;
-  color: #00ff00;
+  color: #bb00ff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,7 +12,7 @@
 
 .header {
   font-size: 11px;
-  color: #00cc66;
+  color: #aa66cc;
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -30,8 +30,8 @@
 .gestureName {
   font-size: 32px;
   font-weight: 700;
-  color: #00ff00;
-  text-shadow: 0 0 20px #00ff00;
+  color: #bb00ff;
+  text-shadow: 0 0 20px #bb00ff;
   text-transform: uppercase;
   letter-spacing: 2px;
   animation: fadeIn 0.3s ease;
@@ -39,7 +39,7 @@
 
 .gestureIcon {
   font-size: 48px;
-  filter: drop-shadow(0 0 8px #00ff00);
+  filter: drop-shadow(0 0 8px #bb00ff);
   animation: fadeIn 0.3s ease;
 }
 

@@ -22,9 +22,9 @@ export const PinchAnalysis = ({ pinch }: PinchAnalysisProps) => {
 
     // Clear canvas
     ctx.clearRect(0, 0, width, height);
-    ctx.strokeStyle = '#00ff00';
+    ctx.strokeStyle = '#bb00ff';
     ctx.lineWidth = 2;
-    ctx.fillStyle = '#00ff00';
+    ctx.fillStyle = '#bb00ff';
 
     if (history.length > 1) {
       ctx.beginPath();
@@ -47,7 +47,7 @@ export const PinchAnalysis = ({ pinch }: PinchAnalysisProps) => {
       ctx.lineTo(width, height);
       ctx.lineTo(0, height);
       ctx.closePath();
-      ctx.fillStyle = 'rgba(0, 255, 0, 0.1)';
+      ctx.fillStyle = 'rgba(187, 0, 255, 0.1)';
       ctx.fill();
     }
   }, [pinch.history]);
@@ -58,14 +58,8 @@ export const PinchAnalysis = ({ pinch }: PinchAnalysisProps) => {
       <div className={styles.content}>
         <div className={styles.label}>PINCH_STRENGTH</div>
         <div className={styles.value}>{pinch.strength.toFixed(3)}</div>
-        <canvas
-          ref={canvasRef}
-          className={styles.graph}
-          width={200}
-          height={80}
-        />
+        <canvas ref={canvasRef} className={styles.graph} width={200} height={80} />
       </div>
     </div>
   );
 };
-

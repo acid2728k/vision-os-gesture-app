@@ -20,8 +20,8 @@ export const NeuralHeatmap = ({ heatmap }: NeuralHeatmapProps) => {
                 className={styles.cell}
                 style={{
                   opacity: value,
-                  boxShadow: value > 0.3 ? `0 0 ${value * 8}px #00ff00` : 'none',
-                  background: value > 0.3 ? '#00ff00' : '#001100',
+                  boxShadow: value > 0.3 ? `0 0 ${value * 8}px #bb00ff` : 'none',
+                  background: value > 0.3 ? '#bb00ff' : '#110011',
                 }}
               />
             ))

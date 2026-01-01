@@ -27,7 +27,7 @@ export const FingerExtension = ({ extension }: FingerExtensionProps) => {
                 className={styles.bar}
                 style={{
                   height: `${value * 100}%`,
-                  boxShadow: value > 0.8 ? '0 0 10px #00ff00' : 'none',
+                  boxShadow: value > 0.8 ? '0 0 10px #bb00ff' : 'none',
                 }}
               />
             </div>

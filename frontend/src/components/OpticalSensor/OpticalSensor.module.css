@@ -1,10 +1,10 @@
 .opticalSensor {
   background: #0a0a0a;
-  border: 2px solid #003300;
+  border: 2px solid #330033;
   border-radius: 4px;
   padding: 12px;
   font-family: 'JetBrains Mono', 'Consolas', monospace;
-  color: #00ff00;
+  color: #bb00ff;
 }
 
 .header {
@@ -13,7 +13,7 @@
   align-items: center;
   margin-bottom: 8px;
   font-size: 11px;
-  color: #00cc66;
+  color: #aa66cc;
 }
 
 .label {
@@ -26,11 +26,11 @@
   align-items: center;
   gap: 6px;
   padding: 4px 8px;
-  background: #003300;
-  border: 1px solid #00ff00;
+  background: #330033;
+  border: 1px solid #bb00ff;
   border-radius: 2px;
   font-size: 10px;
-  color: #00ff00;
+  color: #bb00ff;
 }
 
 .recDot {
@@ -46,7 +46,7 @@
   width: 100%;
   aspect-ratio: 4/3;
   background: #000;
-  border: 1px solid #003300;
+  border: 1px solid #330033;
   overflow: hidden;
 }
 
@@ -68,6 +68,6 @@
   justify-content: space-between;
   margin-top: 8px;
   font-size: 10px;
-  color: #00cc66;
+  color: #aa66cc;
 }
 

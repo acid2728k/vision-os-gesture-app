@@ -1,15 +1,15 @@
 .fingerExtension {
   background: #0a0a0a;
-  border: 2px solid #003300;
+  border: 2px solid #330033;
   border-radius: 4px;
   padding: 12px;
   font-family: 'JetBrains Mono', 'Consolas', monospace;
-  color: #00ff00;
+  color: #bb00ff;
 }
 
 .header {
   font-size: 11px;
-  color: #00cc66;
+  color: #aa66cc;
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -34,8 +34,8 @@
 .barWrapper {
   width: 100%;
   height: 100px;
-  background: #001100;
-  border: 1px solid #003300;
+  background: #110011;
+  border: 1px solid #330033;
   border-radius: 2px;
   position: relative;
   overflow: hidden;
@@ -45,14 +45,14 @@
 
 .bar {
   width: 100%;
-  background: linear-gradient(to top, #00ff00, #00cc66);
+  background: linear-gradient(to top, #bb00ff, #aa66cc);
   transition: height 0.1s ease;
   border-radius: 2px;
 }
 
 .label {
   font-size: 9px;
-  color: #00cc66;
+  color: #aa66cc;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }

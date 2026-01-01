@@ -15,8 +15,8 @@ export function drawHandSkeleton(
   width: number,
   height: number
 ): void {
-  ctx.strokeStyle = '#00ff00';
-  ctx.fillStyle = '#00ff00';
+  ctx.strokeStyle = '#bb00ff';
+  ctx.fillStyle = '#bb00ff';
   ctx.lineWidth = 2;
   
   // Draw connections
@@ -47,7 +47,7 @@ export function drawHandSkeleton(
   
   // Draw fingertips with larger circles
   const fingertips = [4, 8, 12, 16, 20]; // Thumb, Index, Middle, Ring, Pinky
-  ctx.fillStyle = '#00ff88';
+  ctx.fillStyle = '#bb66ff';
   for (const idx of fingertips) {
     const landmark = landmarks[idx];
     const x = landmark.x * width;

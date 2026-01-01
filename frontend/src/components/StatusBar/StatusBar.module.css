@@ -4,10 +4,10 @@
   align-items: center;
   padding: 12px 24px;
   background: #000000;
-  border-bottom: 1px solid #003300;
+  border-bottom: 1px solid #330033;
   font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: 12px;
-  color: #00ff00;
+  color: #bb00ff;
 }
 
 .left {
@@ -19,13 +19,13 @@
 .title {
   font-weight: 600;
   font-size: 14px;
-  color: #00ff00;
-  text-shadow: 0 0 10px #00ff00;
+  color: #bb00ff;
+  text-shadow: 0 0 10px #bb00ff;
 }
 
 .subtitle {
   font-size: 10px;
-  color: #00cc66;
+  color: #aa66cc;
   opacity: 0.8;
 }
 
@@ -39,16 +39,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #00ff00;
+  color: #bb00ff;
   font-weight: 600;
 }
 
 .liveDot {
   width: 8px;
   height: 8px;
-  background: #00ff00;
+  background: #bb00ff;
   border-radius: 50%;
-  box-shadow: 0 0 8px #00ff00;
+  box-shadow: 0 0 8px #bb00ff;
   animation: pulse 2s infinite;
 }
 
@@ -63,7 +63,7 @@
 
 .cpuMem,
 .time {
-  color: #00cc66;
+  color: #aa66cc;
   font-size: 11px;
 }
 

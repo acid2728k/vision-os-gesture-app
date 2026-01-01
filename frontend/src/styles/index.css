@@ -9,14 +9,14 @@
 :root {
   --bg-primary: #000000;
   --bg-secondary: #0a0a0a;
-  --bg-tertiary: #001100;
-  --accent-green: #00ff00;
-  --accent-green-bright: #00ff88;
-  --accent-green-dim: #00cc66;
-  --accent-green-dark: #003300;
-  --text-primary: #00ff00;
-  --text-secondary: #00cc66;
-  --text-dim: #006600;
+  --bg-tertiary: #110011;
+  --accent-green: #bb00ff;
+  --accent-green-bright: #bb66ff;
+  --accent-green-dim: #aa66cc;
+  --accent-green-dark: #330033;
+  --text-primary: #bb00ff;
+  --text-secondary: #aa66cc;
+  --text-dim: #660066;
 }
 
 body {

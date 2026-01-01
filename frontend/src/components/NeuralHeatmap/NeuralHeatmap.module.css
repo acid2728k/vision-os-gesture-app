@@ -1,15 +1,15 @@
 .neuralHeatmap {
   background: #0a0a0a;
-  border: 2px solid #003300;
+  border: 2px solid #330033;
   border-radius: 4px;
   padding: 12px;
   font-family: 'JetBrains Mono', 'Consolas', monospace;
-  color: #00ff00;
+  color: #bb00ff;
 }
 
 .header {
   font-size: 11px;
-  color: #00cc66;
+  color: #aa66cc;
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -23,13 +23,13 @@
 
 .label {
   font-size: 10px;
-  color: #00cc66;
+  color: #aa66cc;
   text-transform: uppercase;
 }
 
 .activeLabel {
   font-size: 9px;
-  color: #00ff00;
+  color: #bb00ff;
 }
 
 .grid {
@@ -42,7 +42,7 @@
 }
 
 .cell {
-  border: 1px solid #003300;
+  border: 1px solid #330033;
   border-radius: 2px;
   transition: all 0.2s ease;
 }

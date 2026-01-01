@@ -44,7 +44,7 @@
   align-items: center;
   justify-content: center;
   background: #000000;
-  color: #00ff00;
+  color: #bb00ff;
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -52,7 +52,7 @@
 .loading {
   text-align: center;
   padding: 32px;
-  border: 2px solid #003300;
+  border: 2px solid #330033;
   border-radius: 4px;
   background: #0a0a0a;
 }
@@ -65,29 +65,29 @@
 
 .error p {
   margin: 8px 0;
-  color: #00cc66;
+  color: #aa66cc;
 }
 
 .loadingText {
   margin-bottom: 16px;
   font-size: 18px;
-  color: #00ff00;
-  text-shadow: 0 0 10px #00ff00;
+  color: #bb00ff;
+  text-shadow: 0 0 10px #bb00ff;
 }
 
 .loadingBar {
   width: 300px;
   height: 4px;
-  background: #001100;
-  border: 1px solid #003300;
+  background: #110011;
+  border: 1px solid #330033;
   border-radius: 2px;
   overflow: hidden;
 }
 
 .loadingBarFill {
   height: 100%;
-  background: #00ff00;
-  box-shadow: 0 0 10px #00ff00;
+  background: #bb00ff;
+  box-shadow: 0 0 10px #bb00ff;
   animation: loading 2s infinite;
 }
 
