@@ -35,13 +35,46 @@ export const OpticalSensor = ({
       // Draw video frame (grayscale effect, mirrored) only if video has content
       if (video.videoWidth > 0 && video.videoHeight > 0) {
         try {
+          // Canvas is always 16:9 (1280x720)
+          const canvasAspect = 16 / 9; // 1.777...
+          const videoAspect = video.videoWidth / video.videoHeight;
+
+          // Use cover strategy: fill canvas while maintaining video aspect ratio
+          // This ensures we always show 16:9, cropping video if needed
+          let sourceX = 0;
+          let sourceY = 0;
+          let sourceWidth = video.videoWidth;
+          let sourceHeight = video.videoHeight;
+
+          // Calculate crop to get 16:9 from video
+          if (videoAspect > canvasAspect) {
+            // Video is wider than 16:9 - crop width (center crop)
+            sourceWidth = video.videoHeight * canvasAspect;
+            sourceX = (video.videoWidth - sourceWidth) / 2;
+          } else {
+            // Video is taller than 16:9 - crop height (center crop)
+            sourceHeight = video.videoWidth / canvasAspect;
+            sourceY = (video.videoHeight - sourceHeight) / 2;
+          }
+
           ctx.save();
           ctx.globalCompositeOperation = "source-over";
           ctx.filter = "grayscale(100%)";
           // Mirror the video horizontally
           ctx.translate(canvas.width, 0);
           ctx.scale(-1, 1);
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          // Draw video cropped to 16:9, filling entire canvas
+          ctx.drawImage(
+            video,
+            sourceX,
+            sourceY,
+            sourceWidth,
+            sourceHeight, // Source rectangle (cropped)
+            0,
+            0,
+            canvas.width,
+            canvas.height // Destination (full canvas)
+          );
           ctx.restore();
         } catch (err) {
           console.error("Error drawing video:", err);

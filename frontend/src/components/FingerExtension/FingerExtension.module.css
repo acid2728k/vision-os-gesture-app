@@ -69,9 +69,16 @@
     var(--accent-purple),
     var(--accent-purple-bright)
   );
-  transition: height 0.15s ease;
+  transition: height 0.05s linear;
   border-radius: 4px;
   box-shadow: 0 0 8px rgba(187, 0, 255, 0.4);
+  will-change: height;
+  transform: translateZ(0); /* Принудительное аппаратное ускорение */
+  backface-visibility: hidden; /* Предотвращает визуальные артефакты */
+}
+
+.barThumb {
+  transition: none; /* Убираем transition для thumb для мгновенного обновления */
 }
 
 .label {

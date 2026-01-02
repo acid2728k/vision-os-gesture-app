@@ -22,7 +22,8 @@ export function classifyGesture(
   const threshold = 0.7; // Finger is extended if > 0.7
   
   // Check for PINCH first (highest priority)
-  if (pinch.strength > 0.5) {
+  // Увеличен порог для меньшей чувствительности
+  if (pinch.strength > 0.7) {
     return 'PINCH';
   }
   

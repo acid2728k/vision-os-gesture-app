@@ -88,41 +88,41 @@ function App() {
               handCount={handCount}
               isRecording={isRecording}
             />
-            <div className={styles.bottomLeft}>
-              <PinchAnalysis
-                pinch={
-                  handData?.pinch || {
-                    strength: 0,
-                    distance: 0,
-                    history: [],
+            <PinchAnalysis
+              pinch={
+                handData?.pinch || {
+                  strength: 0,
+                  distance: 0,
+                  history: [],
+                }
+              }
+            />
+          </div>
+          <div className={styles.rightColumn}>
+            <div className={styles.rightGrid}>
+              <FingerExtension
+                extension={
+                  handData?.fingerExtension || {
+                    thumb: 0,
+                    index: 0,
+                    middle: 0,
+                    ring: 0,
+                    pinky: 0,
                   }
                 }
               />
-              <NeuralHeatmap heatmap={heatmapData} />
+              <OrientationCompass
+                orientation={
+                  handData?.orientation || {
+                    heading: 0,
+                    pitch: 0,
+                    roll: 0,
+                  }
+                }
+              />
+              <NeuralHeatmap heatmap={heatmapData} handCount={handCount} />
+              <DetectedGesture gesture={handData?.gesture || "NONE"} />
             </div>
-          </div>
-          <div className={styles.rightColumn}>
-            <FingerExtension
-              extension={
-                handData?.fingerExtension || {
-                  thumb: 0,
-                  index: 0,
-                  middle: 0,
-                  ring: 0,
-                  pinky: 0,
-                }
-              }
-            />
-            <OrientationCompass
-              orientation={
-                handData?.orientation || {
-                  heading: 0,
-                  pitch: 0,
-                  roll: 0,
-                }
-              }
-            />
-            <DetectedGesture gesture={handData?.gesture || "NONE"} />
           </div>
         </div>
       )}

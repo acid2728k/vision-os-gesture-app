@@ -43,6 +43,7 @@ export function calculateFingerExtension(
 
   // Calculate extension based on distance from tip to wrist
   // Extended finger = longer distance, bent finger = shorter distance
+  // Улучшенный расчет для более симметричной реакции всех пальцев
   const getFingerExtension = (mcp: number, tip: number): number => {
     const mcpPoint = landmarkToPoint(landmarks[mcp]);
     const tipPoint = landmarkToPoint(landmarks[tip]);
@@ -52,29 +53,22 @@ export function calculateFingerExtension(
     // Distance from MCP to wrist (baseline)
     const mcpToWrist = distance3D(mcpPoint, wrist);
 
-    // Extension ratio: if tip is far from wrist relative to MCP, finger is extended
+    // Улучшенная формула для более плавной и симметричной реакции
+    // Используем более широкий диапазон для лучшей чувствительности
     const extension = Math.min(
       1,
-      Math.max(0, (tipToWrist - mcpToWrist * 0.5) / (mcpToWrist * 0.8))
+      Math.max(0, (tipToWrist - mcpToWrist * 0.4) / (mcpToWrist * 1.0))
     );
-    return extension;
+
+    // Применяем множитель для увеличения чувствительности (как у thumb)
+    return Math.min(1, extension * 1.2);
   };
 
-  // Thumb uses different calculation
-  const thumbMcp = landmarkToPoint(landmarks[LANDMARKS.THUMB_MCP]);
-  const thumbTip = landmarkToPoint(landmarks[LANDMARKS.THUMB_TIP]);
-  const thumbToWrist = distance3D(thumbTip, wrist);
-  const thumbMcpToWrist = distance3D(thumbMcp, wrist);
-  const thumbExtension = Math.min(
-    1,
-    Math.max(
-      0,
-      (thumbToWrist - thumbMcpToWrist * 0.3) / (thumbMcpToWrist * 0.7)
-    )
-  );
-
+  // Thumb uses the same calculation as other fingers with MCP
+  // Используем точно такую же логику, как для остальных пальцев
+  // Для большого пальца используем MCP, как и для остальных
   return {
-    thumb: thumbExtension,
+    thumb: getFingerExtension(LANDMARKS.THUMB_MCP, LANDMARKS.THUMB_TIP),
     index: getFingerExtension(LANDMARKS.INDEX_MCP, LANDMARKS.INDEX_TIP),
     middle: getFingerExtension(LANDMARKS.MIDDLE_MCP, LANDMARKS.MIDDLE_TIP),
     ring: getFingerExtension(LANDMARKS.RING_MCP, LANDMARKS.RING_TIP),

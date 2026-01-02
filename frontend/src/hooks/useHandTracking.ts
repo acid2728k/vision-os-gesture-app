@@ -9,8 +9,10 @@ import {
 import { classifyGesture } from "../services/gestureClassifier";
 import { PINCH_HISTORY_SIZE } from "../utils/constants";
 
-const HEATMAP_WIDTH = 350;
-const HEATMAP_HEIGHT = 350;
+// Размер сетки для пиксельной визуализации
+const GRID_SIZE = 15; // 15x15 сетка
+const HEATMAP_WIDTH = GRID_SIZE;
+const HEATMAP_HEIGHT = GRID_SIZE;
 
 export function useHandTracking(
   landmarks: NormalizedLandmarkList[],
@@ -19,42 +21,43 @@ export function useHandTracking(
   handData: HandData | null;
   heatmapData: NeuralHeatmapData;
 } {
-  const heatmapHistoryRef = useRef<
-    Array<{ x: number; y: number; intensity: number }>
-  >([]);
+  // Храним активность ячеек сетки с затуханием
+  const gridActivityRef = useRef<number[][]>(
+    Array(GRID_SIZE)
+      .fill(null)
+      .map(() => Array(GRID_SIZE).fill(0))
+  );
 
   return useMemo(() => {
-    if (landmarks.length === 0) {
-      // Decay heatmap when no hands
-      const pixels = new Array(HEATMAP_WIDTH * HEATMAP_HEIGHT).fill(0);
-      heatmapHistoryRef.current = heatmapHistoryRef.current
-        .map((point) => ({
-          ...point,
-          intensity: point.intensity * 0.95, // Decay
-        }))
-        .filter((point) => point.intensity > 0.01);
+    // Затухание активности ячеек
+    for (let y = 0; y < GRID_SIZE; y++) {
+      for (let x = 0; x < GRID_SIZE; x++) {
+        gridActivityRef.current[y][x] *= 0.92; // Затухание
+      }
+    }
 
-      heatmapHistoryRef.current.forEach((point) => {
-        const x = Math.floor(point.x * HEATMAP_WIDTH);
-        const y = Math.floor(point.y * HEATMAP_HEIGHT);
-        if (x >= 0 && x < HEATMAP_WIDTH && y >= 0 && y < HEATMAP_HEIGHT) {
-          const idx = y * HEATMAP_WIDTH + x;
-          pixels[idx] = Math.max(pixels[idx], point.intensity);
+    if (landmarks.length === 0) {
+      // Нет рук - только затухание
+      const pixels = new Array(GRID_SIZE * GRID_SIZE).fill(0);
+      for (let y = 0; y < GRID_SIZE; y++) {
+        for (let x = 0; x < GRID_SIZE; x++) {
+          const idx = y * GRID_SIZE + x;
+          pixels[idx] = gridActivityRef.current[y][x];
         }
-      });
+      }
 
       return {
         handData: null,
         heatmapData: {
           pixels,
-          width: HEATMAP_WIDTH,
-          height: HEATMAP_HEIGHT,
+          width: GRID_SIZE,
+          height: GRID_SIZE,
           activePixels: pixels.filter((p) => p > 0.1).length,
         },
       };
     }
 
-    // Use first hand
+    // Use first hand for handData (main hand)
     const handLandmarks = landmarks[0];
 
     const fingerExtension = calculateFingerExtension(handLandmarks);
@@ -62,62 +65,41 @@ export function useHandTracking(
     const pinch = calculatePinch(handLandmarks, previousPinchHistory);
     const gesture = classifyGesture(handLandmarks, fingerExtension, pinch);
 
-    // Calculate movement heatmap based on landmarks
-    const pixels = new Array(HEATMAP_WIDTH * HEATMAP_HEIGHT).fill(0);
+    // Активируем ячейки сетки, где находятся landmarks от всех рук
+    landmarks.forEach((handLandmarks) => {
+      handLandmarks.forEach((landmark) => {
+        // Определяем, в какой ячейке сетки находится landmark
+        const gridX = Math.floor(landmark.x * GRID_SIZE);
+        const gridY = Math.floor(landmark.y * GRID_SIZE);
 
-    // Decay existing heatmap
-    heatmapHistoryRef.current = heatmapHistoryRef.current
-      .map((point) => ({
-        ...point,
-        intensity: point.intensity * 0.92, // Decay
-      }))
-      .filter((point) => point.intensity > 0.05);
+        // Активируем ячейку и соседние для более плавного эффекта
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            const x = gridX + dx;
+            const y = gridY + dy;
 
-    // Add current landmarks to heatmap
-    handLandmarks.forEach((landmark) => {
-      const x = landmark.x * HEATMAP_WIDTH;
-      const y = landmark.y * HEATMAP_HEIGHT;
-
-      // Add to history
-      heatmapHistoryRef.current.push({
-        x: landmark.x,
-        y: landmark.y,
-        intensity: 1.0,
+            if (x >= 0 && x < GRID_SIZE && y >= 0 && y < GRID_SIZE) {
+              // Активируем ячейку с максимальной интенсивностью в центре
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              const intensity = distance === 0 ? 1.0 : 0.6 / (distance + 1);
+              gridActivityRef.current[y][x] = Math.max(
+                gridActivityRef.current[y][x],
+                intensity
+              );
+            }
+          }
+        }
       });
     });
 
-    // Keep only recent history (last 200 points for smoother heatmap)
-    if (heatmapHistoryRef.current.length > 200) {
-      heatmapHistoryRef.current = heatmapHistoryRef.current.slice(-200);
-    }
-
-    // Apply all history points to pixels with radial gradient
-    heatmapHistoryRef.current.forEach((point) => {
-      const centerX = point.x * HEATMAP_WIDTH;
-      const centerY = point.y * HEATMAP_HEIGHT;
-      const radius = 12;
-      const centerIntensity = point.intensity;
-
-      const startX = Math.max(0, Math.floor(centerX - radius));
-      const endX = Math.min(HEATMAP_WIDTH - 1, Math.ceil(centerX + radius));
-      const startY = Math.max(0, Math.floor(centerY - radius));
-      const endY = Math.min(HEATMAP_HEIGHT - 1, Math.ceil(centerY + radius));
-
-      for (let py = startY; py <= endY; py++) {
-        for (let px = startX; px <= endX; px++) {
-          const dx = px - centerX;
-          const dy = py - centerY;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist <= radius) {
-            const intensity =
-              centerIntensity * (1 - dist / radius) * (1 - dist / radius); // Quadratic falloff
-            const idx = py * HEATMAP_WIDTH + px;
-            pixels[idx] = Math.max(pixels[idx], intensity);
-          }
-        }
+    // Преобразуем сетку в плоский массив пикселей
+    const pixels = new Array(GRID_SIZE * GRID_SIZE).fill(0);
+    for (let y = 0; y < GRID_SIZE; y++) {
+      for (let x = 0; x < GRID_SIZE; x++) {
+        const idx = y * GRID_SIZE + x;
+        pixels[idx] = Math.min(1, gridActivityRef.current[y][x]);
       }
-    });
+    }
 
     const activePixels = pixels.filter((p) => p > 0.1).length;
 
@@ -134,8 +116,8 @@ export function useHandTracking(
       handData,
       heatmapData: {
         pixels,
-        width: HEATMAP_WIDTH,
-        height: HEATMAP_HEIGHT,
+        width: GRID_SIZE,
+        height: GRID_SIZE,
         activePixels,
       },
     };

@@ -9,13 +9,9 @@
   flex-direction: column;
   overflow: hidden;
   aspect-ratio: 1;
-  width: var(--square-size);
-  height: var(--square-size);
-  min-width: var(--square-size);
-  min-height: var(--square-size);
-  max-width: var(--square-size);
-  max-height: var(--square-size);
-  flex-shrink: 0;
+  /* Используем 100% для симметрии с FINGER_EXTENSION */
+  width: 100%;
+  height: 100%;
 }
 
 .header {
@@ -56,11 +52,18 @@
   max-width: 100%;
   max-height: 100%;
   aspect-ratio: 1;
+  /* Пиксельное отображение без сглаживания */
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  /* Отключаем сглаживание при масштабировании */
+  image-rendering: optimize-contrast;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   background: var(--bg-tertiary);
+  /* Масштабируем без сглаживания для четких пикселей */
   object-fit: contain;
+  /* Зеркальное отображение по горизонтали */
+  transform: scaleX(-1);
 }

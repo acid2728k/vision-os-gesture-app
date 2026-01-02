@@ -5,14 +5,11 @@
   padding: 12px;
   font-family: "JetBrains Mono", "Consolas", monospace;
   color: var(--text-primary);
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  min-height: 0;
   overflow: hidden;
-  max-height: calc(
-    2 * var(--square-size) + 12px
-  ); /* Высота камеры = 2 квадрата + 1 gap */
+  width: 100%;
 }
 
 .header {
@@ -59,6 +56,7 @@
   border-radius: 6px;
   overflow: hidden;
   aspect-ratio: 16/9;
+  flex-shrink: 0;
 }
 
 .video {

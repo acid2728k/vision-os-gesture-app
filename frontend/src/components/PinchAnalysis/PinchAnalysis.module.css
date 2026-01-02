@@ -11,18 +11,29 @@
   width: 100%;
   min-width: 0;
   flex: 1;
-  height: var(--square-size);
-  min-height: var(--square-size);
-  max-height: var(--square-size);
+  min-height: 0;
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 11px;
   color: var(--text-secondary);
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
+}
+
+.title {
+  color: var(--text-secondary);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .content {
@@ -46,11 +57,21 @@
   text-shadow: 0 0 8px var(--accent-purple);
 }
 
-.graph {
+.graphContainer {
   width: 100%;
-  flex: 1;
+  flex: 0 1 auto;
   background: var(--bg-tertiary);
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  min-height: 80px;
+  min-height: 120px;
+  max-height: 240px;
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+
+.graph {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
